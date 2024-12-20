@@ -1,4 +1,5 @@
 import { Blog } from '../blog/blog.model';
+import { User } from '../user/user.model';
 
 const deleteBlog = async (id: string) => {
   const result = await Blog.findByIdAndDelete(id);
@@ -6,14 +7,14 @@ const deleteBlog = async (id: string) => {
 };
 
 const blockedUser = async (userId: string) => {
-  const result = await Blog.findByIdAndUpdate(
+  const result = await User.findByIdAndUpdate(
     userId,
     { isBlocked: true },
     {
       new: true,
       runValidators: true,
     },
-  ).populate('author');
+  );
   return result;
 };
 
