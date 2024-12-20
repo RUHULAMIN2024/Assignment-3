@@ -28,7 +28,7 @@ const updateBlog = catchAsync(async (req, res) => {
 
 const deleteBlog = catchAsync(async (req, res) => {
   const id = req.params.id;
-  const userId = req.user?.id;
+  const userId = req.user?.userId;
   const result = await BlogService.deleteBlog(id, userId);
 
   sendResponse(res, {

@@ -46,7 +46,7 @@ const deleteBlog = async (id: string, userId: string) => {
     if (!blog) {
       throw new AppError(StatusCodes.FORBIDDEN, 'Blog not found');
     }
-
+    console.log(userId, blog.author.toString());
     if (blog.author.toString() !== userId) {
       throw new AppError(
         StatusCodes.UNAUTHORIZED,
@@ -56,7 +56,7 @@ const deleteBlog = async (id: string, userId: string) => {
     const result = await Blog.findByIdAndDelete(id);
 
     if (!result) {
-      throw new AppError(StatusCodes.BAD_REQUEST, 'Failed to delete user');
+      throw new AppError(StatusCodes.BAD_REQUEST, 'Failed to delete blog');
     }
 
     await session.commitTransaction();
@@ -66,7 +66,7 @@ const deleteBlog = async (id: string, userId: string) => {
   } catch (error) {
     await session.abortTransaction();
     await session.endSession();
-    throw new Error('Failed to delete student');
+    throw error;
   }
 };
 
