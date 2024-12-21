@@ -10,7 +10,9 @@ class QueryBuilder<T> {
   }
 
   search(searchableFields: string[]) {
-    const searchTerm = this?.query?.searchTerm;
+    const searchTerm = this?.query?.search;
+    console.log(searchTerm);
+
     if (searchTerm) {
       this.modelQuery = this.modelQuery.find({
         $or: searchableFields.map(
@@ -29,19 +31,23 @@ class QueryBuilder<T> {
     const queryObj = { ...this.query };
 
     // Filtering
-    const excludeFields = ['searchTerm', 'sortBy', 'sortOrder'];
+    const excludeFields = ['search', 'sortBy', 'sortOrder'];
 
     excludeFields.forEach((el) => delete queryObj[el]);
 
-    this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
+    const filter = queryObj?.filter ? { author: queryObj?.filter } : {};
+    console.log(filter);
+
+    this.modelQuery = this.modelQuery.find(filter);
 
     return this;
   }
 
   sort() {
-    const sort =
-      (this?.query?.sort as string)?.split(',')?.join(' ') || '-createdAt';
-    this.modelQuery = this.modelQuery.sort(sort as string);
+    const sortBy = this.query.sortBy || 'createdAt';
+    const sortOrder = this.query?.sortOrder === 'asc' ? '' : '-';
+    const sort = `${sortOrder}${sortBy}`;
+    this.modelQuery = this.modelQuery.sort(sort);
 
     return this;
   }

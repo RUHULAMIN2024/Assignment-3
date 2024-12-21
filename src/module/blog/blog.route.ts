@@ -23,15 +23,7 @@ router.delete(
   auth(USER_ROLE.admin, USER_ROLE.user),
   BlogController.deleteBlog,
 );
-router.get(
-  '/',
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  BlogController.getAllBlogs,
-);
-router.get(
-  '/:id',
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  BlogController.getSingleBlog,
-);
+router.get('/', BlogController.getAllBlogs);
+router.get('/:id', BlogController.getSingleBlog);
 
 export const BlogRouts = router;

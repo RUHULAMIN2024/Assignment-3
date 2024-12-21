@@ -1,5 +1,20 @@
 # Blog Platform Backend
 
+## https://blog-project-server1.vercel.app
+
+## Admin Credentials
+
+- **Email**: `admin@example.com`
+- **Password**: `adminpassword`
+
+---
+
+## Project Overview Video
+
+- Link: https://drive.google.com/file/d/1fK1Jcss6po8DkmZbDm5uPywpbtNm6jQJ/view
+
+---
+
 ## Overview
 
 This project is a backend application for a blogging platform where users can create, update, and delete their blogs. The system incorporates two roles:
@@ -56,13 +71,6 @@ The application includes secure authentication, role-based access control, and p
   - Authorization Errors
   - Not Found Errors
 
-### Documentation
-
-- Detailed API documentation.
-- Comprehensive README file for setup and usage.
-
----
-
 ## Technologies Used
 
 - **TypeScript**
@@ -83,19 +91,24 @@ The application includes secure authentication, role-based access control, and p
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd blog-platform-backend
+   git clone https://github.com/RUHULAMIN2024/Assignment-3
+   cd Assignment-3
    ```
 2. Install dependencies:
    ```bash
    npm install
    ```
 3. Create a `.env` file in the root directory and add the following variables:
+
    ```env
+
+   NODE_ENV=development
    PORT=5000
-   MONGO_URI=<your-mongodb-connection-string>
-   JWT_SECRET=<your-secret-key>
+   DATABASE_URL= <mongodb_url>
+   BCRYPT_SALT_ROUNDS=8
+   jwt_access_secret=
    ```
+
 4. Start the server:
    ```bash
    npm run dev
@@ -123,40 +136,3 @@ The application includes secure authentication, role-based access control, and p
 - **Delete Blog**: `DELETE /api/admin/blogs/:id` (Admin only)
 
 ---
-
-## Deployment
-
-1. Deploy the application on a cloud platform like Heroku, Vercel, or Render.
-2. Configure the environment variables for production.
-3. Provide the live server URL for access.
-
----
-
-## Admin Credentials
-
-- **Email**: `admin@example.com`
-- **Password**: `adminpassword`
-
----
-
-## Project Overview Video
-
-- Link: [Insert video link here]
-
----
-
-## Contribution
-
-Feel free to fork this repository and submit pull requests. For major changes, please open an issue to discuss.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Acknowledgments
-
-Thanks to everyone who contributed to this project and helped make it a success!

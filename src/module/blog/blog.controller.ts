@@ -4,7 +4,9 @@ import sendResponse from '../../utils/sendResponse';
 import { BlogService } from './blog.service';
 
 const createBlog = catchAsync(async (req, res) => {
-  const result = await BlogService.createBlog(req.body);
+  const payload = req.body;
+  payload.author = req.user?.userId;
+  const result = await BlogService.createBlog(payload);
 
   sendResponse(res, {
     statusCode: StatusCodes.CREATED,
@@ -16,7 +18,9 @@ const createBlog = catchAsync(async (req, res) => {
 
 const updateBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await BlogService.updateBlog(id, req.body);
+  const userId = req.user?.userId;
+
+  const result = await BlogService.updateBlog(id, userId, req.body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
